@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draw Heart Demo</title>
+  <style>
+    #roseCanvas{
+      position: absolute;
+      left: 50%;
+      width: 500px;
+      height: 550px;
+      margin-left: -250px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="roseCanvas"></canvas>
+  <script src="../libs/jquery.js"></script>
+  <script src="jquery-drawHeart.js"></script>
+  <script>
+    $('#roseCanvas').drawHeart();
+  </script>
+</body>
+</html>
