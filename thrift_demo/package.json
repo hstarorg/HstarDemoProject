@@ -1,0 +1,15 @@
+{
+  "name": "thrift_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "thrift": "^0.9.3"
+  },
+  "keywords": [],
+  "author": "hstar.org",
+  "license": "MIT"
+}

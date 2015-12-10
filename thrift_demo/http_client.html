@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thrift Test Client</title>
+</head>
+<body>
+  <input type="text" id="num1"> + <input type="text" id="num2"> <button onclick="call()">=</button> <span id="result">?</span>
+ <!--  <script src="jquery.js"></script> -->
+  <script src="thrift.js"></script>
+  <script src="gen-js/1_types.js"></script>
+  <script src="gen-js/ThriftTest.js"></script>
+  <script>
+    var transport = new Thrift.Transport("http://127.0.0.1:7411/thrift");
+    var protocol = new Thrift.TJSONProtocol(transport);
+    var client = new ThriftTest.ThriftTestClient(protocol);
+    var el_result = document.getElementById('result');
+    function call(){
+      var num1 = +document.getElementById('num1').value,
+      num2 = +document.getElementById('num2').value;
+      client.plus(num1, num2, function(result) {
+        el_result.innerText = result;
+        alert('调用成功！');
+      });
+    }
+  </script>
+  <script>
+  </script>
+</body>
+</html>
