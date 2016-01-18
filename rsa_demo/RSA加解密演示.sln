@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSA私钥加密公钥解密", "RSA私钥加密公钥解密\RSA私钥加密公钥解密.csproj", "{5EC64DFE-D44B-4E31-BD8D-2A0C14219C76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSA加解密CSharpJava互调用", "RSA加解密CSharpJava互调用\RSA加解密CSharpJava互调用.csproj", "{F4443306-BA18-4B7E-B9E3-E07361295790}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5EC64DFE-D44B-4E31-BD8D-2A0C14219C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC64DFE-D44B-4E31-BD8D-2A0C14219C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC64DFE-D44B-4E31-BD8D-2A0C14219C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4443306-BA18-4B7E-B9E3-E07361295790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4443306-BA18-4B7E-B9E3-E07361295790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4443306-BA18-4B7E-B9E3-E07361295790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4443306-BA18-4B7E-B9E3-E07361295790}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
