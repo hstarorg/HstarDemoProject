@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TEST</title>
+  <style>
+    .img-container{
+      margin: 0 auto;
+      width: 300px;
+      height: 300px;
+      overflow: hidden; /*隐藏超出区域的元素*/
+      border: 1px solid red;
+      position: relative; /*便于内部元素重新设置定位*/
+    }
+    .img-box{
+      position: absolute; /*便于控制定位*/
+      width: 10000px;
+    }
+    .img-box img{
+      width: 300px;
+      height: 300px;
+      /*float: left;*/
+    }
+  </style>
+  <style>
+    .control-container{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="img-container">
+      <div class="img-box">
+        <img src="images/1_s.jpg" alt="">
+        <img src="images/2_s.jpg" alt="">
+        <img src="images/3_s.jpg" alt="">
+        <img src="images/4_s.jpg" alt="">
+      </div>
+    </div>
+    <hr>
+    <div class="control-container">
+      <button id="btn-prev">Prev</button>
+      <button id="btn-next">Next</button>
+    </div>
+  </div>
+  <script src="jquery.min.js"></script>
+  <script>
+
+    $(function(){
+      const IMG_WIDTH = 300;
+      const IMG_COUNT = 4;
+      var imgIdx = 0; //图片索引
+      var leftOffset = 0;
+
+      var $btnPrev = $('#btn-prev');
+      var $btnNext = $('#btn-next');
+      var $imgBox = $('.img-box');
+
+      var setImgBoxPosition = function(imgIdx){
+        var leftOffset = - IMG_WIDTH * imgIdx;
+        //此处可以加入动画效果
+        $imgBox.animate({left: leftOffset + 'px'});
+      };
+
+      $btnNext.on('click', function(){
+        imgIdx += 1;
+        if(imgIdx >= IMG_COUNT){
+          imgIdx = 0;
+        }
+        setImgBoxPosition(imgIdx);        
+      });
+
+      $btnPrev.on('click', function(){
+        imgIdx -= 1;
+        if(imgIdx < 0){
+          imgIdx = IMG_COUNT - 1;
+        }
+        setImgBoxPosition(imgIdx);
+      });
+    });
+  </script>
+</body>
+</html>

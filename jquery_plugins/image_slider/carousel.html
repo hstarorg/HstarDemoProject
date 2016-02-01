@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        body {
+            font-size:12px;
+            color:#222;
+            font-family:Verdana,Arial,Helvetica,sans-serif;
+            background:#f0f0f0;
+        }
+        ul,li {
+            list-style:none;
+        }
+        .wrapper {
+            width:800px;
+            margin:0 auto;
+            padding-bottom:50px;
+        }
+        h1 {
+            height:50px;
+            line-height:50px;
+            font-size:22px;
+            font-weight:normal;
+            font-family:"Microsoft YaHei",SimHei;
+        }
+
+        #focus {
+            height:280px;
+            width:800px;
+            overflow:hidden;
+            position:relative;
+        }
+        #focus ul {
+            position:absolute;
+        }
+        #focus ul li {
+            float:left;
+            width:800px;
+            height:280px;
+            /*background:#000;*/
+        }
+
+        #focus div.btn {
+            position:absolute;
+            width:800px;
+            height:10px;
+            padding:5px 10px;
+            right:0;
+            bottom:0;
+            text-align:right;
+            background:#000;
+            opacity:0.5;
+            filter:alpha(opacity=50);
+        }
+        #focus div.btn span {
+            display:inline-block;
+            width:25px;
+            height:10px;
+            margin-left:5px;
+            cursor:pointer;
+            background:#fff;
+            border:1px solid #A020F0;
+        }
+
+        #focus div.preNext {
+            width:45px;
+            height:100px;
+            position:absolute;
+            top:90px;
+            background-image:url(http://img.blog.csdn.net/20140421094336484);
+            background-repeat:no-repeat;
+            opacity:0;
+            filter:alpha(opacity=0);
+            cursor:pointer;
+        }
+        #focus div.pre {
+            left:0;
+            background-position:left top;
+        }
+        #focus div.next {
+            right:0;
+            background-position:right top;
+        }
+        #focus span.hidden {
+            display:block;
+            width:400px;
+            height:260px;
+            background:#000;
+            opacity:0;
+            filter:alpha(opacity=0);
+            position:absolute;
+            cursor:pointer;
+        }
+        #focus span.left {
+            top:0;
+            left:0;
+        }
+        #focus span.right {
+            top:0;
+            right:0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1>仿2012QQ商城jQuery轮播图效果</h1>
+    <div id="focus">
+        <ul>
+            <li><a href="#"><img src="images/1_s.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="images/2_s.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="images/3_s.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="images/4_s.jpg" alt="" /></a></li>
+        </ul>
+    </div>
+    <div style="height: 300px;width: 100%;background-color: #FF6E3C"></div>
+</div>
+
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+        var len = $("#focus ul li").length; //获取焦点图个数
+        var index = 0;
+        var picTimer;
+
+        //以下代码添加数字按钮和按钮后的半透明条，还有上一页、下一页两个按钮
+        var btn = "<div class='btn'>";
+        for(var i=0; i < len; i++) {btn += "<span></span>";}
+        btn += "</div>";
+        btn +="<div class='preNext pre'></div>"+"<div class='preNext next'></div>"+
+                "<span class='hidden left'></span>"+"<span class='hidden right'></span>";
+        $("#focus").append(btn);
+
+
+        //为小按钮添加鼠标滑入事件，以显示相应的内容
+        $("#focus div.btn span").css("opacity",0.4).mouseenter(function() {
+            index = $("#focus div.btn span").index(this);
+            showPics(index);
+        });
+
+        //图片鼠标划过
+        $('#focus span.left').hover(function(){
+            $('#focus div.pre').animate({opacity:'0.5'},500);
+        },function(){
+            $('#focus div.pre').animate({opacity:'0'},500);
+        });
+        $('#focus span.right').hover(function(){
+            $('#focus div.next').animate({opacity:'0.5'},500);
+        },function(){
+            $('#focus div.next').animate({opacity:'0'},500);
+        });
+
+        //上一页按钮
+        $("#focus span.left").click(function() {
+            if(index == -1) {index = len - 1;}
+
+            showPics(index);
+
+            index--;
+        });
+        //下一页按钮
+        $("#focus span.right").click(function() {
+            if(index == len){
+                index = 0;
+                showFirstPic();
+            }else{
+                showPics(index);
+            }
+            index ++;
+        });
+
+        //本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+        $("#focus ul").css("width",sWidth * (len+1));
+
+        //鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+        $("#focus").hover(function() {
+            clearInterval(picTimer);
+        },function() {
+            picTimer = setInterval(function() {
+                if(index == len) { //如果索引值等于li元素个数，说明最后一张图播放完毕，接下来要显示第一张图，即调用showFirPic()，然后将索引值清零
+                    index = 0;
+                    showFirstPic();
+                } else { //如果索引值不等于li元素个数，按普通状态切换，调用showPics()
+                    showPics(index);
+                }
+                index++;
+            },2000); //此2000代表自动播放的间隔，单位：毫秒
+        });
+
+        //显示图片函数，根据接收的index值显示相应的内容
+        function showPics(index) { //普通切换
+            var nowLeft = -index*sWidth; //根据index值计算ul元素的left值
+            $("#focus ul").stop(true,false).animate({"left":nowLeft},500); //通过animate()调整ul元素滚动到计算出的position
+            $("#focus div.btn span").animate({"opacity":"0.4"},300).eq(index).animate({"opacity":"1"},100); //为当前的按钮切换到选中的效果
+        }
+        function showFirstPic() { //最后一张图自动切换到第一张图时专用
+            $("#focus ul").append($("#focus ul li:first").clone());//为了达到从最右边到最左边还是往左移动效果，而不是往右移动
+            var nowLeft = -len*sWidth; //通过li元素个数计算ul元素的left值，也就是最后一个li元素的右边
+            $("#focus ul").stop(true,false).animate({"left":nowLeft},500,function() {
+                //通过callback，在动画结束后把ul元素重新定位到起点，然后删除最后一个复制过去的元素
+                $("#focus ul").css("left","0");
+                $("#focus ul li:first").remove();
+            });
+            $("#focus div.btn span").animate({"opacity":"0.4"},300).eq(index).animate({"opacity":"1"},100); //为当前的按钮切换到选中的效果
+        }
+
+
+        function showLastPic() {
+            $("#focus ul").prepend($("#focus ul li:last").clone());//为了达到从最右边到最左边还是往左移动效果，而不是往右移动
+
+
+
+        }
+
+    });
+</script>
+</body>
+</html>
