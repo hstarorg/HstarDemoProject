@@ -7,3 +7,7 @@
 [h5_effect](https://github.com/hstarorg/HstarDemoProject/tree/master/h5_effect)  H5特效Demo
 
 [rsa_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/rsa_demo) RSA加解密Demo
+
+[jsonp_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/jsonp_demo) JSONP演示Demo
+
+[golang_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/golang_demo) GoLang演示Demo

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSONP TEST</title>
+</head>
+<body>
+  <script>
+    window.callback = function(){
+      console.log('window callback');
+    };
+    window.JSONP = function(url, callback){
+      callback = callback || 'callback';
+      var result;
+      return new Promise((resolve, reject) => {
+        var overwritten;
+        var scriptEl = document.createElement('script');
+        scriptEl.src = url + '?callback=' + callback;
+        //加载完成后，删除callback
+        scriptEl.onload = function(){
+          if(overwritten === undefined){
+            delete window[callback];  
+          }else{
+            window[callback] = overwritten;
+          }
+          resolve(result);
+        }
+        //挂载一个擦callback到window上
+        overwritten = window[callback]; //先保存一个，用完之后再还原
+        window[callback] = function(data){
+          result = data
+        }
+        document.head.appendChild(scriptEl);
+      });
+    };
+    window.JSONP('http://localhost:9999/abc', 'goodbye').then((data) => {
+      console.log(data);
+      window.callback();
+    });
+  </script>
+</body>
+</html>
