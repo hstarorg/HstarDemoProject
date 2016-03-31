@@ -11,3 +11,5 @@
 [jsonp_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/jsonp_demo) JSONP演示Demo
 
 [golang_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/golang_demo) GoLang演示Demo
+
+[angular2_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/angular2_demo)  Angular2学习demo

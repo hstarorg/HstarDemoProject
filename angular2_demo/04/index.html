@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Angular2 Hello World</title>
+</head>
+
+<body>
+  
+  <!-- Angular2组件标记 -->
+  <hello_world></hello_world>
+  
+  <!-- IE required polyfills -->
+  <script src="node_modules/es6-shim/es6-shim.js"></script>
+  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+  <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+  <!-- Compile TypeScript -->
+  <script src="node_modules/typescript/lib/typescript.js"></script>
+
+  <!-- Angular2 required -->
+  <script src="node_modules/systemjs/dist/system.js"></script>
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <!--<script src="node_modules/rxjs/bundles/Rx.js"></script>-->
+  <!-- angular2这坑货，必须使用这个才可以兼容，为了避免外部请求，我下载到本地，命名为Rx-1.js -->
+  <script src="https://code.angularjs.org/2.0.0-beta.12/Rx.js"></script>
+  <!--<script src="libs/Rx-1.js"></script>-->
+  <script src="node_modules/angular2/bundles/angular2.js"></script>
+
+  <!-- startup app -->
+  <script>
+    System.config({
+      transpiler: 'typescript',
+      typescriptOptions: { emitDecoratorMetadata: true },
+      packages: {'components': {defaultExtension: 'ts'}} //配置components目录下的请求，默认格式为ts
+    });
+    //注意：此处import的时候，必须要指明后缀，因为我们是把bootstrap.ts放在index平级的，在System的config中没有配置默认扩展名
+    System.import('bootstrap.ts').then(null, console.error.bind(console));
+  </script>
+</body>
+
+</html>
