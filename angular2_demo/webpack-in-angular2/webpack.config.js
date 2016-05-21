@@ -15,12 +15,13 @@ module.exports = {
   },
   output: {
     path: 'dist/assets/js',
+    publicPath: 'http://localhost:8080/assets/js/',
     filename: '[name].js',
     chunkFilename: '[id].chunk.js'
   },
   module: {
     loaders: [
-      {test: /\.ts$/, loader: 'ts'}
+      { test: /\.ts$/, loader: 'ts' }
     ]
   },
   plugins: [
@@ -28,7 +29,12 @@ module.exports = {
       name: ['vendor', 'polyfills'] //vendor和polyfills设置为公共代码块
     }),
     new CopyWebpackPlugin([
-      {from: './src/index.html', to: path.join(__dirname, 'dist')}
+      { from: './src/index.html', to: path.join(__dirname, 'dist') }
     ])
-  ]
+  ],
+  devServer: {
+    contentBase: "./dist",
+    // hot: true,
+    historyApiFallback: true
+  }
 };
