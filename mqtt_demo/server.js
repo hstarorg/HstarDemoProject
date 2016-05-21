@@ -1,27 +1,64 @@
 var mosca = require('mosca');
 
+var auth = new mosca.Authorizer();
+
 var memoryPersistence = new mosca.persistence.Memory();
 
 var settings = {
-  port: 7410,
+  port: 3000,
   persistence: memoryPersistence
 };
 
-var authenticate = function (client, username, password, callback) {
-  console.log('authenticate', username, password.toString());
-  if (username == "xxx" && password.toString() == "xxx")
-    callback(null, true);
-  else
-    callback(null, false);
-};
+// settings = {
+//   http: {
+//     port: 3000,
+//     bundle: true
+//   }
+// };
 
-var authorizePublish = function (client, topic, payload, callback) {
- // console.log('authorizePublish', client);
+//模拟数据库
+var users = [{
+  userId: 1,
+  username: 'xx',
+  password: 'xx',
+  publishTopics: ['abc', 'abc/e'],
+  subscribeTopics: ['abc', 'test']
+}];
+
+var userMap = new Map();
+
+
+var authenticate = function (client, username, password, callback) {
+  var user = users.find(x => x.username === username.toString() && x.password === password.toString());
+  if (!user) {
+    return callback('User not found.', false);
+  }
+  userMap.set(client.id, {
+    userId: user.userId,
+    publishTopics: user.publishTopics,
+    subscribeTopics: user.subscribeTopics
+  });
   callback(null, true);
 };
 
+var authorizePublish = function (client, topic, payload, callback) {
+  console.log('authorizePublish', client.id);
+  var user = userMap.get(client.id);
+  if(!user){
+    return callback('User invalid', false);
+  }
+  if(user.publishTopics.indexOf(topic) < 0){
+    return callback('Can\'t publish topic: ' + topic, false);
+  }
+  callback(null, true);
+};
+
+auth.addUser('xx', 'xx', 'test\/*', 'test\/*', function (err) {
+  console.log(err, 'abc');
+});
+
 var authorizeSubscribe = function (client, topic, callback) {
- // console.log('authorizeSubscribe', client);
+  // console.log('authorizeSubscribe', client);
   callback(null, true);
 };
 
@@ -37,6 +74,9 @@ server.on('ready', () => {
   server.authenticate = authenticate;
   server.authorizePublish = authorizePublish;
   server.authorizeSubscribe = authorizeSubscribe;
+  // server.authenticate = auth.authenticate; //  authenticate;
+  // server.authorizePublish = auth.authorizePublish; // authorizePublish;
+  // server.authorizeSubscribe = auth.authorizeSubscribe; // authorizeSubscribe;
 });
 
 server.on("error", function (err) {

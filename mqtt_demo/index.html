@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mqtt client</title>
+</head>
+
+<body>
+  <script src="http://localhost:3000/mqtt.js"></script>
+  <script>
+    var client = mqtt.connect('http://localhost:3000', {username: 'xxx', password: 'xxx'});
+
+      client.subscribe("mqtt/demo");
+
+      client.on("message", function(topic, payload) {
+        console.log([topic, payload].join(": "));
+      //  client.end();
+      });
+
+      setInterval(()=>{
+        client.publish("mqtt/demo", "hello world!");
+      }, 2000);
+      
+  </script>
+</body>
+
+</html>
