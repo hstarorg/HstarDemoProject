@@ -8,3 +8,5 @@
 [03](https://github.com/hstarorg/HstarDemoProject/tree/master/angular2_demo/03)  官方Demo03，高级组件，UiTabs
 
 [04](https://github.com/hstarorg/HstarDemoProject/tree/master/angular2_demo/04)  Angular2学习Demo，Hello world
+
+[webpack in angular2](https://github.com/hstarorg/HstarDemoProject/tree/master/angular2_demo/webpack-in-angular2)  Angular2中实践webpack的demo。
