@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {RouteConfig, RouterLink} from '@angular/router-deprecated';
 
+import {CustomRouterOutlet} from './../libs/customRouterOutlet';
 import {AboutUserComponent} from './about-user.component';
 import {AboutMeComponent} from './about-me.component';
 
@@ -9,10 +10,11 @@ import {AboutMeComponent} from './about-me.component';
   template : `
   <h1>About</h1>
 <a [routerLink]="['Home']">Go to Home</a>
-<a [routerLink]="['AboutMe']">Go to AboutMe</a>
+<a [routerLink]="['AboutMe']">Go to About Me</a>
+<a [routerLink]="['AboutUser']">Go to About User</a>
 <router-outlet></router-outlet>
   `,
-  directives: [ROUTER_DIRECTIVES] 
+  directives: [RouterLink, CustomRouterOutlet] 
 })
 
 @RouteConfig([
