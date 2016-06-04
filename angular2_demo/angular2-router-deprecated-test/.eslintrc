@@ -1,0 +1,19 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "globalReturn": true,
+      "impliedStrict": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "semi": 2
+  },
+  "env": {
+    "browser": false,
+    "node": true
+  }
+}
