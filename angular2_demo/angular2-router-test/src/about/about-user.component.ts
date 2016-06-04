@@ -1,16 +1,17 @@
 import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {RouteSegment} from '@angular/router';
 
 @Component({
   selector: 'demo-about-user',
-  template : `
+  template: `
   <h1>About User</h1>
   `,
-  directives: [] 
+  directives: []
 })
 
-export class AboutUserComponent{
-  constructor(){
+export class AboutUserComponent {
+  constructor(private segment: RouteSegment) {
     console.log('about user init');
+    console.log(segment.parameters, segment, segment.getParam('id'));
   }
 }
