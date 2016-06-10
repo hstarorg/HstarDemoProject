@@ -30,15 +30,17 @@
     }
 
     press(key) {
-      console.log(key);
       var refresh = false;
       switch (key) {
         case 'top':
+          this.board.shape.rotate();
           break;
         case 'right':
           this.board.shape.moveRight();
           break;
         case 'down':
+          // this.board.refresh();
+          this.board.shape.moveDown();
           break;
         case 'left':
           this.board.shape.moveLeft();
@@ -47,11 +49,6 @@
       if (refresh) {
         //  this.board.refresh();
       }
-    }
-
-    draw(context, x, y, blockType) {
-      var size = this.size;
-      context.drawImage(this.sprite, (blockType - 1) * size, 0, size, size, x * size, y * size, size, size);
     }
   }
 
