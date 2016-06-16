@@ -1,22 +1,29 @@
 import {Component} from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {RouteTree, RouteSegment, ROUTER_DIRECTIVES} from '@angular/router';
 
 import {HomeAboutComponent} from './home-about.component';
 
 @Component({
   selector: 'demo-home',
-  template : `
+  template: `
 <h1>Home</h1>
   `,
-  directives: [ROUTER_DIRECTIVES] 
+  directives: [ROUTER_DIRECTIVES]
 })
 
-// @RouteConfig([
-//   {path: '/about', name: 'HomeAbout', component: HomeAboutComponent, useAsDefault: true}
-// ])
-
-export class HomeComponent{
-  constructor(){
+export class HomeComponent {
+  constructor() {
     console.log('home init');
+  }
+
+  routerCanDeactivate(curTree: RouteTree, futureTree: RouteTree) {
+    console.log('abc');
+    return new Promise((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
+  routerOnActivate(currSegment: RouteSegment, prev: RouteSegment, currTree: RouteTree, prevTree: RouteTree){
+    console.log('succeed');
   }
 }
