@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES, Routes} from '@angular/router';
+import {ROUTER_DIRECTIVES, Routes, RouteSegment} from '@angular/router';
 
 import {AboutUserComponent} from './about-user.component';
 import {AboutMeComponent} from './about-me.component';
@@ -26,8 +26,8 @@ export class AboutComponent {
   
   private id: number = 1;
   
-  constructor() {
-    console.log('about init');
+  constructor(private routeSegment: RouteSegment) {
+    console.log('about init', 'params:', routeSegment.parameters);
   }
   
 }
