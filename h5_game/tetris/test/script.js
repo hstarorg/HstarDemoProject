@@ -43,12 +43,50 @@ var Tetris = (function(){
 
 	// Sprite Constructor - Loading the sprite image
 	function SpriteLoader(src){
-		var path = 'assets/images/';
+		var path = '';
 		this.image = new Image();
 		this.image.src = path + ((src) ? src : 'blocks.png');
 		this.imageSize = blockSize || 32;
 		this.total = 7;
 	}
+
+	// Canvas Constructor
+	function Canvas(id, width, height){
+		this.id = id;
+		this.el = document.getElementById(this.id);
+		this.ctx = this.el.getContext('2d');
+		this.width  = width  || window.innerWidth  || documentElement.clientWidth;
+		this.height = height || window.innerHeight || documentElement.clientHeight;
+		this.setSize();
+	}
+	Canvas.prototype = {
+		setSize: function(){
+			this.el.width  = this.width;
+			this.el.height = this.height;
+		},
+		clear: function(fromX, fromY, toX, toY){
+			var fromX = fromX || 0;
+			var fromY = fromY || 0;
+			var toX = toX || this.width;
+			var toY = toY || this.height;
+			this.ctx.clearRect(fromX, fromY, toX, toY);
+		},
+		drawHeader: function(text, color){
+			this.ctx.fillStyle = color;
+			this.ctx.fillRect(0, 0, this.width, 50);
+			this.ctx.font = "25px Arial";
+			this.ctx.fillStyle = 'black';
+			this.ctx.textAlign = 'center';
+			this.ctx.fillText(text, this.width/2, 34);
+		},
+		drawText: function(text){
+			this.clear(0, 50);
+			this.ctx.font = "25px Arial";
+			this.ctx.fillStyle = 'white';
+			this.ctx.textAlign = 'center';
+			this.ctx.fillText(text, this.width/2, 84);
+		}
+	};
 
 	// Single Tetris Block
 	function Block(){
@@ -219,6 +257,7 @@ var Tetris = (function(){
 		addShapeToBoard: function(){
 			loop1:
 				for (var y=0; y < this.shape.layout.length; y++){
+			loop2:
 					for (var x=0; x < this.shape.layout[0].length; x++){
 						if (this.shape.layout[y][x]){
 							var boardX = this.shape.currentX + x;

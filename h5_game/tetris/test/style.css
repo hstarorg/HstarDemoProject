@@ -1,0 +1,77 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	background: black url(../assets/images/bg.jpg) left bottom fixed no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow: hidden;
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+.container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+canvas {
+	display: block;
+	position: absolute;
+	background: rgba(20,20,20,.8);
+  border: 2px solid white;
+  border-radius: 10px;
+}
+#board {
+	position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#timer {
+	top: 20px;
+	left: 20px;
+	border-color: rgb(147,255,36);
+}
+#score {
+	top: 150px;
+	left: 20px;
+	border-color: rgb(0,204,255);
+}
+#level {
+	top: 20px;
+	right: 20px;
+	border-color: rgb(0,204,255);
+}
+#high-score {
+	top: 150px;
+	right: 20px;
+	border-color: rgb(147,255,36);
+}
+#next-shape {
+	bottom: 20px;
+	left: 20px;
+	border-color: rgb(147,255,36);
+}
+
+/* Smaller devices (iPhone, less than 768px) */
+@media (max-width: 900px) {
+	canvas:not(#board) { left: 3%; right: auto; }
+	#board { right: 3%; left: auto; }
+	#timer { top: 67px; }
+	#score { top: 190px; }
+	#level { top: 312px; }
+	#high-score { top: 434px; }
+	#next-shape { top: 557px; }
+}
+@media (min-width: 700px) and (max-width: 900px) {
+	.container { width: 700px; }
+}
+
