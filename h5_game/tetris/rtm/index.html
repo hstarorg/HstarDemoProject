@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>俄罗斯方块</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="start-container">
+        <p>
+            <button id="btn-start">开始游戏</button>
+        </p>
+        <p>
+            <button id="btn-setting">设置</button>
+        </p>
+    </div>
+    <div class="game-container">
+        <div class="timer-panel">
+            <div class="panel-header">
+                使用时间
+            </div>
+            <div class="panel-body">
+                00:00:00
+            </div>
+        </div>
+        <div class="help-panel">
+            <div class="panel-body">
+                <p>↑ 翻转方块</p>
+                <p>↓ 加速下落</p>
+                <p>→ 向右移动</p>
+                <p>← 向左移动</p>
+            </div>
+        </div>
+        <div class="level-panel">
+            <div class="panel-header">
+                当前级别
+            </div>
+            <div class="panel-body">
+                Level 1
+            </div>
+        </div>
+        <div class="game-main-panel">
+            <canvas id="c_game_main"></canvas>
+        </div>
+        <div class="next-panel">
+            <div class="panel-header">
+                下一方块
+            </div>
+            <div class="panel-body">
+                Z
+            </div>
+        </div>
+        <div class="setting-panel">
+            <div class="panel-body">
+                <button>暂停</button><br><br><button>设置</button>
+            </div>
+        </div>
+        <div class="score-panel">
+            <div class="panel-header">
+                当前得分
+            </div>
+            <div class="panel-body">
+                500
+            </div>
+        </div>
+        <div class="high-score-panel">
+            <div class="panel-header">
+                最高得分
+            </div>
+            <div class="panel-body">
+                19900
+            </div>
+        </div>
+    </div>
+    <script src="js/ResourceManager.js"></script>
+    <script src="js/Canvas.js"></script>
+    <script src="js/Board.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

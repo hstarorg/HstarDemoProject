@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body, div {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #000;
+    color: #fff;
+}
+
+.game-container, .start-container {
+    position: relative;
+    box-sizing: content-box;
+    height: 600px;
+    width: 590px;
+    margin: 0 auto;
+    margin-top: calc(50vh - 300px);
+    border: 1px solid green;
+}
+
+.game-container{
+    display: none;
+}
+
+.start-container {
+    box-sizing: border-box;
+    background: url(../images/bg_start.png);
+    background-size: cover;
+    width: 390px;
+    padding-top: 280px;
+}
+
+.game-main-panel {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    width: 390px;
+    height: 600px;
+    border-left: 1px solid green;
+    border-right: 1px solid green;
+}
+
+.start-container p {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.start-container p button {
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-family: 微软雅黑;
+    background: linen;
+    border: 0;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+}
+
+.start-container p button:hover{
+    background: lightcoral;
+}
+
+.timer-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.help-panel {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    width: 100px;
+}
+
+.level-panel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.next-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.setting-panel {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    width: 100px;
+}
+
+.score-panel {
+    position: absolute;
+    right: 0;
+    bottom: 120px;
+    width: 100px;
+    height: 100px;
+}
+
+.high-score-panel {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.panel-header {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+    font-size: 18px;
+    color: #fff;
+    background: lightsalmon;
+}
+
+.panel-body {
+    text-align: center;
+    line-height: 70px;
+}
+
+.help-panel .panel-body, .setting-panel .panel-body {
+    line-height: normal;
+}
+
+.timer-panel, .next-panel, .score-panel {
+    border-bottom: 1px solid green;
+}
