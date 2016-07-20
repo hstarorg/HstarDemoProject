@@ -3,6 +3,7 @@ function Board() {
   this.rows = 20;
   this.cols = 13;
   this.boardList = [];
+  this.shape = new window.Shape();
 
   console.log(ResourceManager.getResource('blocks'));
 
@@ -17,6 +18,7 @@ Board.prototype = {
   _init: function () {
     this._buildGridData();
     this._initGrid();
+    this.shape.draw(this.context);
   },
   _buildGridData() {
     var i, j;
@@ -26,7 +28,6 @@ Board.prototype = {
         this.boardList[i][j] = 0;
       }
     }
-    console.log(this.boardList);
   },
   _initGrid() {
     var i;
