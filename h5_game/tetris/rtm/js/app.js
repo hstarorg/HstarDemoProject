@@ -21,7 +21,7 @@
 
   function startGame() {
     ResourceManager.onResourceLoaded = function () {
-      new Board();
+      new Tetris().startGame();
     };
     ResourceManager.init();
   }
