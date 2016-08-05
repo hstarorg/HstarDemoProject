@@ -31,6 +31,13 @@
       toX = toX || this.width;
       toY = toY || this.height;
       this.context.clearRect(fromX, fromY, toX, toY);
+    },
+    drawText: function (text, x, y) {
+      this.clear(0, 0);
+      this.context.font = '25px Arial';
+      this.context.fillStyle = 'purple';
+      this.context.textAlign = 'center';
+      this.context.fillText(text, x === undefined ? (this.width / 2) : x, y === undefined ? 45 : y);
     }
   };
 
