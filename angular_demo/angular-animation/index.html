@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body ng-controller="TestCtrl as vm">
+  <div class="wrapper">
+    <button ng-click="vm.startAnimate()">Start Animation</button>
+    <button ng-click="vm.testParse()">Test $parse</button>
+    <input type="checkbox" ng-model="vm.ck1">
+    <div class="test slide-animation" ng-if="vm.ck1"> AAAAAAAAAAA</div>
+    <select ng-options="item for item in vm.names" ng-model="vm.name"></select>
+    <form name="abc"></form>
+    <form name="test"></form>
+  </div>
+  <script src="vendor/jquery-2.2.3.min.js"></script>
+  <script src="vendor/angular.js"></script>
+  <script src="vendor/angular-animate.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
