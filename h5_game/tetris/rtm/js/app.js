@@ -1,5 +1,5 @@
 (function (document) {
-
+  var gameInst;
   function DomObject(dom) {
     this.dom = dom;
   }
@@ -21,7 +21,8 @@
 
   function startGame() {
     ResourceManager.onResourceLoaded = function () {
-      new Tetris().startGame();
+      gameInst = new Tetris();
+      gameInst.startGame();
     };
     ResourceManager.init();
   }
@@ -32,8 +33,35 @@
       $('.game-container').css('display', 'block');
       startGame();
     });
+
     $('#btn-setting').on('click', function (ev) {
-      alert('You clicked the setting button.');
+      $('.modal-dialog').css('display', 'block');
+    });
+
+    $('#btn-dialog-close').on('click', function(){
+      $('.modal-dialog').css('display', 'none');
+      gameInst && gameInst.resume();
+    });
+
+    $('#ck-sound').on('change', function(){
+      var enable = $('#ck-sound').get().checked;
+      window.TetrisConfig.config.enableSound = enable;
+    });
+
+    $('#btn-game-setting').on('click', function(){
+      $('.modal-dialog').css('display', 'block');
+      gameInst.pause();
+    });
+
+    $('#btn-game-pause').on('click', function (evt) {
+      var el = evt.target;
+      if (el.innerText === '暂停') {
+        el.innerText = '继续';
+        gameInst.pause();
+      } else {
+        el.innerText = '暂停';
+        gameInst.resume();
+      }
     });
   }
 

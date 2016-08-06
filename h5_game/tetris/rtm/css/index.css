@@ -130,3 +130,30 @@ body{
 .timer-panel, .next-panel, .score-panel{
     border-bottom: 1px solid green;
 }
+
+.modal-dialog{
+    display: none;
+}
+
+.modal-dialog .modal-body{
+    position: fixed;
+    height: 300px;
+    width: 390px;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -195px;
+    background: #000;
+    z-index: 100;
+    text-align: center;
+}
+
+.modal-dialog::after{
+    content: '';
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255,255,255,0.3);
+}
