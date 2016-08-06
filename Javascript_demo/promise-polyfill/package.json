@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "test": "ava"
+  },
+  "name": "promise-polyfill",
+  "version": "1.0.0",
+  "main": "Promise2.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "ava": "^0.15.2"
+  }
+}
