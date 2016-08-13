@@ -1,3 +1,15 @@
+let noop = () => { };
+
+let isFn = (fn) => typeof fn === 'function';
+
+class Deferred {
+  constructor(onFulfilled, onRejected, promise) {
+    this.resolve = typeof onFulfilled === 'function' ? onFulfilled : null;
+    this.reject = typeof onRejected === 'function' ? onRejected : null;
+    this.promise = promise;
+  }
+}
+
 class Promise2 {
   constructor(resolver) {
     if (typeof resolver !== 'function') {
@@ -5,51 +17,86 @@ class Promise2 {
     }
     this._result = null;
     this._state = 'unresolved';// ['has-resolution', 'has-rejection', 'unresolved']
-    this._fulfillmentQueue = [];
-    this._rejectionQueue = [];
+    this._deferred = [];
+
+    this._doResolve(resolver);
+  }
+
+  _doResolve(resolver) {
+    let done = false; //避免先resolve,又再次reject
     try {
       resolver(value => {
-        this._doResolve(value);
+        if (done) return;
+        done = true;
+        this._resolve(this, value);
       }, reason => {
-        this._doReject(reason);
+        if (done) return;
+        done = true;
+        this._reject(this, reason);
       });
     } catch (e) {
-      this._doReject(e);
+      if (done) return;
+      done = true;
+      this._reject(this, e);
     }
   }
 
-  _doResolve(value) {
-    this._state = 'has-resolution';
-    let item;
-    while ((item = this._fulfillmentQueue.splice(0, 1)).length > 0) {
-      item[0](value);
+  _resolve(self, value) {
+    self._state = 'has-resolution';
+    self._result = value;
+    self._doProcess();
+  }
+
+  _reject(self, reason) {
+    self._state = 'has-rejection';
+    self._result = reason;
+    self._doProcess();
+  }
+
+  _doProcess() {
+    this._deferred.forEach(deferred => {
+      this._processResult(deferred);
+    });
+  }
+
+  _processResult(deferred) {
+    let hasResolution = this._state === 'has-resolution';
+    if (hasResolution) {
+      if (isFn(deferred.resolve)) {
+        deferred.resolve(this._result);
+      }
+    } else {
+      if (isFn(deferred.reject)) {
+        deferred.reject(this._result);
+      }
     }
   }
 
-  _doReject(reason) {
-    this._state = 'has-rejection';
-    let item;
-    while ((item = this._rejectionQueue.splice(0, 1)).length > 0) {
-      item[0](reason);
+  _buildPromise(deferred) {
+    if (this._state === 'unresolved') {
+      console.log('add');
+      this._deferred.push(deferred);
+      return;
     }
-  }
-
-  _processResult(onFulfillment, onRejection) {
-    if (this._state === 'has-resolution' && typeof onFulfillment === 'function') {
-      return onFulfillment(this._result);
+    let callback = this._state === 'has-resolution' ? deferred.resolve : deferred.reject;
+    if (!callback) {
+      return;
     }
-    if (this._state === 'has-rejection' && typeof onRejection === 'function') {
-      return onRejection(this._result);
+    let ret;
+    try {
+      ret = callback(this._result);
+    } catch (e) {
+      this._reject(deferred.promise, e);
+      return;
     }
+    this._resolve(deferred.promise, ret);
+    this._processResult(deferred);
   }
 
   then(onFulfillment, onRejection) {
-    if (this._state === 'unresolved') {
-      this._fulfillmentQueue.push(onFulfillment);
-      this._rejectionQueue.push(onRejection);
-    } else {
-      this._processResult(onFulfillment, onRejection);
-    }
+    let promise = new (this.constructor)(noop);
+    this._buildPromise(new Deferred(onFulfillment, onRejection, promise));
+    return promise;
   }
 
   catch(onRejection) {
@@ -64,12 +111,16 @@ class Promise2 {
 
   }
 
-  static reject() {
-
+  static reject(value) {
+    return new Promise2((resolve, reject) => {
+      reject(value);
+    });
   }
 
-  static resolve() {
-
+  static resolve(value) {
+    return new Promise2((resolve, reject) => {
+      resolve(value);
+    });
   }
 }
 
