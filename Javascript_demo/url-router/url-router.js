@@ -1,4 +1,4 @@
-(() => {
+;(() => {
   let urlRouter = {};
   let container;
   let routeMapCache;
