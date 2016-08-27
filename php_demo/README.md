@@ -9,4 +9,5 @@
 ---
 
 [04-grammar](04-grammar/)  PHP语法demo
--- 01.php PHP变量，常量，数据类型等演示demo
+
+1. 01.php PHP变量，常量，数据类型等演示demo
