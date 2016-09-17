@@ -1,0 +1,12 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2>My Todo List</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let t of todos">
+      <input type="checkbox">
+      <span>{{t.description}}</span>
+    </li>
+  </ul>
+  <div>
+    <input type="text" class="form-control" placeholder="Add todo">
+  </div>
+</div>
