@@ -1,0 +1,19 @@
+<div class="todo-detail">
+  <table class="table table-bordered">
+    <tr>
+      <th style="width: 30%;">任务ID</th>
+      <td>{{todo?.id}}</td>
+    </tr>
+    <tr>
+      <th>任务描述</th>
+      <td>{{todo?.description}}</td>
+    </tr>
+    <tr>
+      <th>当前状态</th>
+      <td>{{todo?.status}}</td>
+    </tr>
+  </table>
+  <button routerLink="/todo" class="btn btn-info">返回Todo List</button>
+
+  <button class="btn btn-info" (click)="setRoute()">Set ROute</button>
+</div>

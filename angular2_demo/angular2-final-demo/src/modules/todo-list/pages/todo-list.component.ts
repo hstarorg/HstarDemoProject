@@ -1,24 +1,62 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject, Observable } from 'rxjs';
 
 import { Todo } from './../services/todo';
-import { TodoService } from './../services/todo-service';
+import { TodoService } from './../services/todo.service';
 
 @Component({
-  selector: 'todo-list',
   template: require('./todo-list.html')
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[];
 
-  constructor() {
-    this.todos = [
-      new Todo('User1'),
-      new Todo('Test2'),
-      new Todo('GGG3')
-    ]
+  private todos: Todo[];
+
+  private todos2: Observable<Todo[]>;
+
+  private todoDescription: string = '';
+
+  private keyword: string = '';
+
+  private searchTerms = new Subject<string>();
+
+  constructor(private todoService: TodoService) {
+
   }
 
+
+
   ngOnInit() {
+    // this.todos = this.todoService.getTodos();
+    this.todoService.getTodosAsync()
+      // this.todoService.getTodosFromRemote()
+      .then(todos => this.todos = todos);
     console.log('init');
+
+
+    this.todos2 = this.searchTerms
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .switchMap(term => {
+        return term ? this.todoService.searchTodo(term): Observable.of<Todo[]>([]);
+      }).catch(error => {
+        return Observable.of<Todo[]>([]);
+      })
+  }
+
+  public keyPress(evt: KeyboardEvent) {
+    if (evt.keyCode === 13) { // Enter
+      this.addTodo();
+    }
+  }
+
+  public search(keyword: string) {
+    console.log(keyword);
+    this.searchTerms.next(keyword);
+  }
+
+  private addTodo() {
+    this.todoService.saveTodo(new Todo(this.todoDescription));
+    this.todoDescription = '';
+    this.ngOnInit();
   }
 }
