@@ -13,7 +13,7 @@
   </div>
   <hr>
   <div class="search">
-    <input type="text" class="form-control" placeholder="Keyword" #searchInput (keyup)="search(searchInput.value)">
+    <input type="text" class="form-control" placeholder="Keyword" #searchInput (keyup.enter)="search(searchInput.value)">
   </div>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let t of todos2 | async">

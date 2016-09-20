@@ -37,16 +37,14 @@ export class TodoListComponent implements OnInit {
       .debounceTime(300)
       .distinctUntilChanged()
       .switchMap(term => {
-        return term ? this.todoService.searchTodo(term): Observable.of<Todo[]>([]);
+        return term ? this.todoService.searchTodo(term) : Observable.of<Todo[]>([]);
       }).catch(error => {
         return Observable.of<Todo[]>([]);
       })
   }
 
   public keyPress(evt: KeyboardEvent) {
-    if (evt.keyCode === 13) { // Enter
-      this.addTodo();
-    }
+    this.addTodo();
   }
 
   public search(keyword: string) {
