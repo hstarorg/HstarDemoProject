@@ -64,4 +64,8 @@ export class TodoListComponent implements OnInit {
     this.todoDescription = '';
     this.ngOnInit();
   }
+
+  public addTitle(){
+    this.titles['t3'] = 'Good';
+  }
 }

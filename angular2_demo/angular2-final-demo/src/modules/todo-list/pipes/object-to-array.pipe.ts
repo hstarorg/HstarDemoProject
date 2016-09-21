@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'objectToArray'
+  name: 'objectToArray',
+  pure: false
 })
 
 export class ObjectToArrayPipe implements PipeTransform {
