@@ -9,17 +9,23 @@
     </li>
   </ul>
   <div>
-    <input type="text" class="form-control" placeholder="Add todo" [(ngModel)]="todoDescription" (keypress)="keyPress($event)">
+    <input type="text" class="form-control" placeholder="Add todo" [(ngModel)]="todoDescription" (keyup.enter)="keyPress($event)">
   </div>
   <hr>
   <div class="search">
-    <input type="text" class="form-control" placeholder="Keyword" #searchInput (keyup.enter)="search(searchInput.value)">
+    <input type="text" class="form-control" placeholder="Keyword" #searchInput (keyup)="search(searchInput.value)">
   </div>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let t of todos2 | async">
       <input type="checkbox">
       <span>{{t.description}}</span>
       <a routerLink="/todo/{{t.id}}">Detail</a>
+    </li>
+  </ul>
+  <hr>
+  <ul class="list-group">
+    <li class="lis-group-item" *ngFor="let item of titles | objectToArray">
+      {{item.key}} - {{item.value}}
     </li>
   </ul>
 </div>

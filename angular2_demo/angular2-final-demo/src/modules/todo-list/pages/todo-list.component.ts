@@ -5,13 +5,15 @@ import { Todo } from './../services/todo';
 import { TodoService } from './../services/todo.service';
 
 @Component({
-  template: require('./todo-list.html')
+  template: require('./todo-list.html')   
 })
 export class TodoListComponent implements OnInit {
 
   private todos: Todo[];
 
   private todos2: Observable<Todo[]>;
+
+  private titles: {};
 
   private todoDescription: string = '';
 
@@ -31,6 +33,11 @@ export class TodoListComponent implements OnInit {
       // this.todoService.getTodosFromRemote()
       .then(todos => this.todos = todos);
     console.log('init');
+
+    this.titles = {
+      't1': 'title1',
+      't2': 'title2'
+    };
 
 
     this.todos2 = this.searchTerms
