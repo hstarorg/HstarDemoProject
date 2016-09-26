@@ -21,7 +21,7 @@ module.exports = {
     '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
     '@angular/http': 'ng.http',
     '@angular/forms': 'ng.forms',
-    '@angular/router': 'ng.router',
+    '@angular/router': 'ng.router'
   },
   resolve: {
     root: [path.resolve(__dirname)],
