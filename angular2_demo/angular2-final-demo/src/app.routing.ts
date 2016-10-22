@@ -3,21 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent, NotFoundComponent } from './pages';
 
-function loadModule(): any {
-  return new Promise(resolve => {
-    (require as any).ensure([], require => {
-      let mod = require('./modules/lazy-load/lazy-load.module').LazyLoadModule;
-      console.log(mod);
-      resolve(mod);
+function loadModule(moduleName): any {
+  return () => {
+    return new Promise(resolve => {
+      resolve(window['newkit'][moduleName].AppModule);
     });
-  });
+  };
 }
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  // { path: '**', component: NotFoundComponent },
   { path: '404', component: NotFoundComponent },
-  { path: 'lazy', loadChildren: loadModule },
+  { path: 'lazy', loadChildren: loadModule('lazy-load') },
+  { path: '', component: HomeComponent },
   { path: '**', redirectTo: '/404', data: {} }
 ];
 

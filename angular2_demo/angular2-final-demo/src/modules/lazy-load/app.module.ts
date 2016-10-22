@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { routing }   from './lazy-load.routing';
+import { routing }   from './app.routing';
 
 import { LazyLoadComponent } from './app/lazy-load.component';
 
@@ -11,5 +11,5 @@ import { LazyLoadComponent } from './app/lazy-load.component';
   exports: [],
   providers: [],
 })
-export class LazyLoadModule { }
+export class AppModule { }
 

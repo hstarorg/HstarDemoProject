@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ngc": "ngc -p ./tsconfig.aot.json",
+    "webpack-aot": "webpack --progress --config webpack.aot.config.js --optimize-minimize",
+    "build-aot": "npm run ngc && npm run webpack-aot"
   },
   "dependencies": {
     "@angular/common": "2.1.0",
@@ -21,6 +24,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@angular/compiler-cli": "^2.1.0",
+    "@types/node": "^6.0.45",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-angular-embed-templates": "^2.3.0",
     "gulp-concat": "^2.6.0",
