@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack -w --config build/webpack.dev.js",
+    "dev": "webpack --config build/webpack.dev.js",
+    "watch": "webpack -w --config build/webpack.dev.js",
     "dev-server": "webpack-dev-server --config build/webpack.dev.js  --inline --progress --profile --colors --watch --display-error-details --display-cached",
     "build": "webpack -w --config build/webpack.prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp && npm run dev && cd dist && anywhere -f -p 9999"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +32,7 @@
   },
   "devDependencies": {
     "angular2-template-loader": "^0.5.0",
+    "anywhere": "^1.4.0",
     "awesome-typescript-loader": "^2.2.4",
     "css-loader": "^0.25.0",
     "del": "^2.2.2",
