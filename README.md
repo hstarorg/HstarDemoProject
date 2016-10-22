@@ -1,5 +1,7 @@
 # 我的实例代码库
 
+[angular_demo](angular_demo)  使用Angular的一些Demo
+
 [angular2_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/angular2_demo)  Angular2学习demo
 
 [dotnet_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/dotnet_demo)  用于存放Dotnet Core项目demo
@@ -10,7 +12,11 @@
 
 [h5_game](https://github.com/hstarorg/HstarDemoProject/tree/master/h5_game)  H5游戏开发Demo
 
-[jquery_plugins](https://github.com/hstarorg/HstarDemoProject/tree/master/jquery_plugins)  jQuery插件开发demo
+[JavaScript Demo](javascript_demo) 使用JavaScript的一些Demo代码
+
+[jquery_plugins](https://github.com/hstarorg/HstarDemoProject/tree/master/jquery_plugins)  jQuery插件开发/使用Demo
+
+[js_algorithm](js_algorithm) JavaScript算法存档
 
 [jsonp_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/jsonp_demo) JSONP演示Demo
 
@@ -22,4 +28,8 @@
 
 [rsa_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/rsa_demo) RSA加解密Demo
 
+[test_program](test_program) 用于存放各种测试方案Demo
+
 [thrift_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/thrift_demo)  Thrift基本使用Demo
+
+[webapp_demo](webapp_demo) WebApp开发Demo
