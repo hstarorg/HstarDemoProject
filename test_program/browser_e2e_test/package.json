@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nightwatch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run e2e",
+    "e2e": "nightwatch --env chrome"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "chromedriver": "^2.24.1",
     "nightwatch": "^0.9.8",
-    "selenium-server": "^3.0.1"
+    "selenium-server": "^2.53.1"
   }
 }

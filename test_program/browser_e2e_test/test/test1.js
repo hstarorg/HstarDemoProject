@@ -1,15 +1,21 @@
 module.exports = {
   ['Index page test'](client) {
-    client.url('http://www.google.com')
+    client.url('http://10.16.75.27:8101/')
       .waitForElementVisible('body', 1000)
-      .assert.title('Google')
-      .assert.visible('input[type=text]')
-      .setValue('input[type=text]', 'rembrandt van rijn')
-      .waitForElementVisible('button[name=btnG]', 1000)
-      .click('button[name=btnG]')
       .pause(1000)
-      .assert.containsText('ol#rso li:first-child',
-      'Rembrandt - Wikipedia')
+      .setValue('#usernameInput', 'jh3r')
+      .setValue('#passwordInput', 'hm910705(')
+      .waitForElementVisible('.btn-flat.btn-primary', 1000)
+      .click('.btn-flat.btn-primary')
+      .pause(2000)
+      .assert.title('Newegg Central 2.0')
+      .assert.visible('#navbar')
+      .setValue('input[ng-model="ctrl.globalSearchText"]', 'test value')
+      .waitForElementVisible('.search-btn', 1000)
+      .click('.search-btn')
+      .pause(1000)
+      .assert.containsText('.page-content .well > h3',
+      'We looked everywhere but we couldn\'t find it!')
       .end();
   }
 }
