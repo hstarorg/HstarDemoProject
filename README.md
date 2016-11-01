@@ -4,6 +4,8 @@
 
 [angular2_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/angular2_demo)  Angular2学习demo
 
+[build_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/build_demo)  构建相关的Demo
+
 [dotnet_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/dotnet_demo)  用于存放Dotnet Core项目demo
 
 [golang_demo](https://github.com/hstarorg/HstarDemoProject/tree/master/golang_demo) GoLang演示Demo
