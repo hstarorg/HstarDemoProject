@@ -4,7 +4,6 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {AppComponent} from './app/app.component';
 
-
 bootstrap(AppComponent, [
   provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]);
