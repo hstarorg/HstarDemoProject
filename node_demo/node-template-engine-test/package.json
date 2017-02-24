@@ -1,0 +1,18 @@
+{
+  "name": "node-template-engine-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dot": "^1.1.1",
+    "ect": "^0.5.9",
+    "swig": "^1.4.2",
+    "vash": "^0.12.2"
+  }
+}

@@ -1,0 +1,6 @@
+<ul>
+    {{ for (var val, i = 0, l = it.list.length; i < l; i ++) { }}
+        {{ val = it.list; }}
+        <li>用户: {{=val[i].user}}/ 网站：{{=val[i].site}}</li>
+    {{ } }}
+</ul>
