@@ -1,0 +1,29 @@
+{
+  "name": "koa-demo",
+  "version": "0.1.0",
+  "description": "Demo code with koa framework",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pm2 start index.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Koa",
+    "Demo"
+  ],
+  "author": "Jay.M.Hu",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-error": "^3.0.1",
+    "koa-etag": "^3.0.0",
+    "koa-helmet": "^3.2.0",
+    "koa-logger": "^3.0.1",
+    "koa-response-time": "^2.0.0",
+    "koa-router": "^7.2.1",
+    "koa-session": "^5.4.0",
+    "koa-static": "^4.0.0"
+  }
+}
