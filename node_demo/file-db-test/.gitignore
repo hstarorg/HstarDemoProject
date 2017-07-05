@@ -1,0 +1,13 @@
+lowdb.json
+
+loki.json
+
+nedb.json
+
+levelup_db/
+
+locallydb_db/
+
+*.sqlite3
+
+.~lowdb.json
