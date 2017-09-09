@@ -7,7 +7,7 @@ const conditional = require('koa-conditional-get');
 const etag = require('koa-etag');
 const session = require('koa-session');
 const logger = require('koa-logger');
-const  responseTime = require('koa-response-time');
+const responseTime = require('koa-response-time');
 const error = require('koa-error');
 
 const app = new Koa();
