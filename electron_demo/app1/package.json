@@ -1,0 +1,18 @@
+{
+  "name": "electron-app1",
+  "version": "0.0.1",
+  "description": "The electron demo",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Jay.M.Hu",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.7.8"
+  }
+}
