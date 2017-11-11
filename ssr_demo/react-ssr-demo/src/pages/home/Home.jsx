@@ -10,7 +10,12 @@ class HomePage extends Component {
     };
   }
   render() {
-    return <div>Home Page</div>;
+    return (
+      <div>
+        Home Pageafdfdsafsdafsadfsafasfsadfsfsafsaf
+        <span>我发大水范德萨发生大发生大发</span>
+      </div>      
+    );
   }
 }
 

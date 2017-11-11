@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": " webpack-dev-server --config build/webpack.base.conf.js --inline --hot --progress --colors",
+    "dev": "webpack-dev-server --config build/webpack.base.conf.js --inline --hot --progress --colors",
+    "build": "webpack --config build/webpack.base.conf.js",
     "app": "webpack --config build/webpack.base.conf.js",
     "dev:server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +14,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "babel-register": "^6.26.0",
     "koa": "^2.4.1",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
@@ -20,6 +22,7 @@
     "redux": "^3.7.2"
   },
   "devDependencies": {
+    "@types/react": "^0.14.35",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",

@@ -5,13 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: [
-    // 'webpack-hot-middleware/client',
-    './client.js'
-  ],
+  entry: {
+    app: [
+      // 'webpack-hot-middleware/client',
+      './client.js'
+    ],
+    'server-bundle': './src'
+  },
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: 'app.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   resolve: {
