@@ -1,0 +1,16 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parser": "babal-eslint",
+  "extends": "airbnb",
+  "globals": {
+    "document": true,
+    "window": true
+  },
+  "plugins": [
+    "react",
+    "import"
+  ]
+}
