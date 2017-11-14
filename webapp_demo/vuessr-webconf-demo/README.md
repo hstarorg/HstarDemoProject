@@ -18,4 +18,20 @@ npm run build
 npm run build --report
 ```
 
+## Server Side Build
+
+```bash
+# build client resources
+npm run build
+
+# build server resource
+npm run ssr
+
+# Run
+node server.js
+
+# 执行前三个命令
+npm run server
+```
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
