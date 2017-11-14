@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <hr>
     <router-view/>
   </div>
 </template>
@@ -8,7 +10,7 @@
 <script>
 export default {
   name: 'app'
-}
+};
 </script>
 
 <style>
