@@ -9,12 +9,16 @@ class HomePage extends Component {
     this.state = {
     };
   }
+  handleBtnClick() {
+    alert('hahha');
+  }
   render() {
     return (
       <div>
         Home Pageafdfdsafsdafsadfsafasfsadfsfsafsaf
         <span>我发大水范德萨发生大发生大发</span>
-      </div>      
+        <button onClick={this.handleBtnClick}>点击我试试</button>
+      </div>
     );
   }
 }

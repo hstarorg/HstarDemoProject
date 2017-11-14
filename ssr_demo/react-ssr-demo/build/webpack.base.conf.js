@@ -9,12 +9,11 @@ module.exports = {
     app: [
       // 'webpack-hot-middleware/client',
       './client.js'
-    ],
-    'server-bundle': './src'
+    ]
   },
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: '[name].js',
+    filename: 'assets/js/[name].js',
     publicPath: '/'
   },
   resolve: {

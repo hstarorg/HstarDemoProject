@@ -16,8 +16,10 @@
   "dependencies": {
     "babel-register": "^6.26.0",
     "koa": "^2.4.1",
+    "koa-static-cache": "^5.1.1",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   },
