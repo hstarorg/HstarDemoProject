@@ -1,15 +1,16 @@
 import About from './About.vue';
 
 class AboutCtrl {
-  constructor($element) {
-    debugger
-    setTimeout(() => {
-      new Vue({
-        el: '#about',
-        render: h => h(About)
-      });
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    new Vue({
+      el: '#page-about',
+      render: h => h(About)
     });
   }
 }
 angular.module('app')
-  .controller('AboutCtrl', ['$scope', '$element', AboutCtrl]);
+  .controller('AboutCtrl', [AboutCtrl]);

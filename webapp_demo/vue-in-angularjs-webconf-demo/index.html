@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AngularJS Demo</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="" class="navbar-brand">Vue in Angular Demo</a>
+      </div>
+      <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <ng-view></ng-view>
+  </div>
+  <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+  <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular-route.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+  <script src="dist/js/app.js"></script>
+</body>
+
+</html>

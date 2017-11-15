@@ -1,7 +1,7 @@
 const path = require('path');
 module.exports = {
   entry: {
-    about: './src/pages/about/about.controller.js'
+    app: './index.js'
   },
   output: {
     path: path.join(__dirname, './dist'),
@@ -16,5 +16,4 @@ module.exports = {
       loader: 'babel-loader'
     }]
   }
-
 };

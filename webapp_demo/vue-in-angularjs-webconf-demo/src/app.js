@@ -1,3 +1,4 @@
+const basePath = 'src';
 angular.module('app', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
     $locationProvider.html5Mode(true);
@@ -5,11 +6,11 @@ angular.module('app', ['ngRoute'])
       .when('/', {
         controller: 'HomeCtrl',
         controllerAs: 'vm',
-        templateUrl: 'pages/home/home.html'
+        templateUrl: `${basePath}/pages/home/home.html`
       })
       .when('/about', {
         controller: 'AboutCtrl',
         controllerAs: 'vm',
-        templateUrl: 'pages/about/about.html'
+        templateUrl: `${basePath}/pages/about/about.html`
       })
   }]);
