@@ -4,10 +4,10 @@
   "description": "",
   "main": "lfu.js",
   "scripts": {
-    "test": "mocha test.js",
+    "test": "mocha test.js || true",
     "test2": "mocha test2.js || true",
     "benchmark": "node benchmark-test.js",
-    "test:all": "npm run test && npm run benchmark"
+    "test:all": "npm run test && npm run test2 && npm run benchmark"
   },
   "keywords": [],
   "author": "",
