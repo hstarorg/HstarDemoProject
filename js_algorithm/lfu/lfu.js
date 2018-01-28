@@ -68,6 +68,7 @@ class LFU {
       if (countKeys && (keys = Object.keys(countKeys))) {
         if (keys.length > 0) {
           this.storeMap.delete(keys[0]);
+          this._removeKeyAtIndex(keys[0], i);
           break;
         }
       }

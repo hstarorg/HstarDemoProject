@@ -169,4 +169,25 @@ describe('LFUCache', function() {
     assert.equal(cache.get('a'), '1');
     assert.equal(cache.get('b'), '2');
   });
+
+  it('should remove LFU of ten', function() {
+    const cache = new LFUCache(10);
+    putFixturesIntoCache(cache, 10);
+
+    cache.get('a');
+    cache.get('b');
+    cache.get('c');
+    cache.get('d');
+    // e is missing!
+    cache.get('f');
+    cache.get('g');
+    cache.get('h');
+    cache.get('i');
+    cache.get('j');
+
+    cache.put('k', '11');
+    assert.equal(cache.get('a'), '1');
+    assert.equal(cache.get('e'), -1);
+    assert.equal(cache.get('j'), '10');
+  });
 });
