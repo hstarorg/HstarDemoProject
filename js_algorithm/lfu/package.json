@@ -5,7 +5,8 @@
   "main": "lfu.js",
   "scripts": {
     "test": "mocha test.js",
-    "benchmark": "node benchmark-test.js"
+    "benchmark": "node benchmark-test.js",
+    "test:all": "npm run test && npm run benchmark"
   },
   "keywords": [],
   "author": "",

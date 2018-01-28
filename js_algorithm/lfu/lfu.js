@@ -2,8 +2,7 @@ class LFU {
   constructor(maxKeyCount) {
     this.maxKeyCount = maxKeyCount;
     this.storeMap = new Map();
-    this.countArr = [];
-    this._minIndex = 0;
+    this.countArr = []; // Array<Set> 结构，数组的index表示访问次数，Set是当前访问次数的key
   }
 
   get length() {
@@ -45,7 +44,6 @@ class LFU {
     }
     keySet.add(key);
     this.countArr[index] = keySet;
-    this._minIndex = Math.min(this._minIndex, index);
   }
 
   put(key, value) {

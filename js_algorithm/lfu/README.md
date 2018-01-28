@@ -13,4 +13,7 @@ npm test
 
 # Run benchmark test
 npm run benchmark
+
+# Run all test
+npm run test:all
 ```
