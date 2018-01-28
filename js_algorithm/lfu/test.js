@@ -187,7 +187,7 @@ describe('LFUCache', function() {
 
     cache.put('k', '11');
     assert.equal(cache.get('a'), '1');
-    assert.equal(cache.get('e'), -1);
+    assert.equal(cache.get('e'), null);
     assert.equal(cache.get('j'), '10');
   });
 });

@@ -3,6 +3,7 @@ class LFU {
     this.maxKeyCount = maxKeyCount;
     this.storeMap = new Map();
     this.countArr = [];
+    this._minIndex = 0;
   }
 
   get length() {
@@ -30,17 +31,21 @@ class LFU {
   }
 
   _removeKeyAtIndex(key, index) {
-    const keyObj = this.countArr[index];
-    if (keyObj) {
-      delete keyObj[key];
-      this.countArr[index] = keyObj;
+    const keySet = this.countArr[index];
+    if (keySet && keySet.has(key)) {
+      keySet.delete(key);
+      this.countArr[index] = keySet;
     }
   }
 
   _addKeyAtIndex(key, index) {
-    const keyObj = this.countArr[index] || {};
-    keyObj[key] = true;
-    this.countArr[index] = keyObj;
+    const keySet = this.countArr[index] || new Set();
+    if (keySet.has(key)) {
+      keySet.delete(key);
+    }
+    keySet.add(key);
+    this.countArr[index] = keySet;
+    this._minIndex = Math.min(this._minIndex, index);
   }
 
   put(key, value) {
@@ -63,14 +68,12 @@ class LFU {
    */
   _deleteOld() {
     for (var i = 0, len = this.countArr.length; i < len; i++) {
-      let countKeys = this.countArr[i];
-      let keys;
-      if (countKeys && (keys = Object.keys(countKeys))) {
-        if (keys.length > 0) {
-          this.storeMap.delete(keys[0]);
-          this._removeKeyAtIndex(keys[0], i);
-          break;
-        }
+      let keySet = this.countArr[i];
+      if (keySet && keySet.size > 0) {
+        const key = keySet.keys().next().value;
+        this.storeMap.delete(key);
+        this._removeKeyAtIndex(key, i);
+        break;
       }
     }
   }
