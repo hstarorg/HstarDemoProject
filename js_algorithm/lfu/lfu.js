@@ -33,55 +33,67 @@ class LFU {
     const keySet = this.countArr[index];
     if (keySet && keySet.has(key)) {
       keySet.delete(key);
-      this.countArr[index] = keySet;
     }
   }
 
-  _addKeyAtIndex(key, index, isReplace) {
-    const keySet = this.countArr[index] || new Set();
-    if (keySet.has(key)) {
-      keySet.delete(key);
-    }
-    if (!isReplace) {
+  _addKeyAtIndex(key, index) {
+    const keySet = this.countArr[index];
+    if (keySet) {
+      if (keySet.has(key)) {
+        keySet.delete(key);
+      }
       keySet.add(key);
     } else {
-      this._addKeyAtIndex(key, index + 1);
+      const newKeySet = new Set();
+      newKeySet.add(key);
+      this.countArr[index] = newKeySet;
     }
-    this.countArr[index] = keySet;
   }
 
   put(key, value) {
+    // 如果最大长度小于0，直接停止put
+    if (this.maxKeyCount <= 0) {
+      return;
+    }
     const hasKey = this.storeMap.has(key);
     let storeValue = { count: 0 };
+    // 如果已经存在，只需要更换值
     if (hasKey) {
       storeValue = this.storeMap.get(key);
     }
     storeValue.value = value;
-    // 额度已满
-    let deleteSucceed = true;
+    // 如果已经满了，则执行删除操作
     if (!hasKey && this.length >= this.maxKeyCount) {
-      deleteSucceed = this._deleteOld();
+      this._deleteLeastVisitedKey();
     }
-    if (deleteSucceed) {
-      this._addKeyAtIndex(key, storeValue.count, hasKey);
-      this.storeMap.set(key, storeValue);
+    // 存储数据
+    this.storeMap.set(key, storeValue);
+    if (hasKey) {
+      // 如果key存在
+      this._removeKeyAtIndex(key, storeValue.count);
+      storeValue.count++;
+      // 重新记录访问的key
+      this._addKeyAtIndex(key, storeValue.count);
+    } else {
+      // 处理Key
+      this._addKeyAtIndex(key, storeValue.count);
     }
   }
 
   /**
    * 删除访问次数最少的key
    */
-  _deleteOld() {
+  _deleteLeastVisitedKey() {
     for (var i = 0, len = this.countArr.length; i < len; i++) {
       let keySet = this.countArr[i];
+      // console.log(keySet);
       if (keySet && keySet.size > 0) {
         const key = keySet.keys().next().value;
         this.storeMap.delete(key);
-        this._removeKeyAtIndex(key, i);
-        return true;
+        keySet.delete(key);
+        break;
       }
     }
-    return false;
   }
 }
 

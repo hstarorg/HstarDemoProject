@@ -5,6 +5,7 @@
   "main": "lfu.js",
   "scripts": {
     "test": "mocha test.js",
+    "test2": "mocha test2.js || true",
     "benchmark": "node benchmark-test.js",
     "test:all": "npm run test && npm run benchmark"
   },
