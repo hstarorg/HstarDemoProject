@@ -4,12 +4,14 @@
   "description": "",
   "main": "lfu.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js",
+    "benchmark": "node benchmark-test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^5.0.0"
+    "mocha": "^5.0.0",
+    "tiny-lfu-cache": "^1.0.0"
   }
 }

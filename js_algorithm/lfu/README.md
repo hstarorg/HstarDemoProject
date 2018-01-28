@@ -10,4 +10,7 @@ npm i
 
 # Run test
 npm test
+
+# Run benchmark test
+npm run benchmark
 ```
