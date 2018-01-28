@@ -190,4 +190,51 @@ describe('LFUCache', function() {
     assert.equal(cache.get('e'), null);
     assert.equal(cache.get('j'), '10');
   });
+
+  it('Leetcode lfu base test', function() {
+    const cache = new LFUCache(2);
+    cache.put(1, 1);
+    cache.put(2, 2);
+    assert.equal(cache.get(1), 1);
+    cache.put(3, 3); // evicts key 2
+    assert.equal(cache.get(2), null);
+    assert.equal(cache.get(3), 3);
+    cache.put(4, 4); // evicts key 1.
+    assert.equal(cache.get(1), null);
+    assert.equal(cache.get(3), 3);
+    assert.equal(cache.get(4), 4);
+  });
+
+  it('Leetcode zero size test', function() {
+    const cache = new LFUCache(0);
+    cache.put(0, 0);
+    assert.equal(cache.get(0), null);
+  });
+
+  it('Leetcode complex test 1', function() {
+    const cache = new LFUCache(2);
+    cache.put(1, 1);
+    cache.put(2, 2);
+    assert.equal(cache.get(1), 1);
+    cache.put(3, 3);
+    assert.equal(cache.get(2), null);
+    assert.equal(cache.get(3), 3);
+    cache.put(4, 4);
+    assert.equal(cache.get(1), null);
+    assert.equal(cache.get(3), 3);
+    assert.equal(cache.get(4), 4);
+  });
+
+  it('Leetcode complex test 1', function() {
+    const cache = new LFUCache(2);
+    assert.equal(cache.get(2), null);
+    cache.put(2, 6);
+    assert.equal(cache.get(1), null);
+    cache.put(1, 5);
+    cache.put(1, 2);
+    console.log(cache.storeMap);
+    assert.equal(cache.get(1), 2);
+    assert.equal(cache.get(2), 6);
+    
+  });
 });

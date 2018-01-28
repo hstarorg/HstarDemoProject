@@ -54,11 +54,14 @@ class LFU {
     }
     storeValue.value = value;
     // 额度已满
-    if (this.length >= this.maxKeyCount) {
-      this._deleteOld();
+    let deleteSucceed = true;
+    if (!this.storeMap.has(key) && this.length >= this.maxKeyCount) {
+      deleteSucceed = this._deleteOld();
     }
-    this._addKeyAtIndex(key, storeValue.count);
-    this.storeMap.set(key, storeValue);
+    if (deleteSucceed) {
+      this._addKeyAtIndex(key, storeValue.count);
+      this.storeMap.set(key, storeValue);
+    }
   }
 
   /**
@@ -71,9 +74,10 @@ class LFU {
         const key = keySet.keys().next().value;
         this.storeMap.delete(key);
         this._removeKeyAtIndex(key, i);
-        break;
+        return true;
       }
     }
+    return false;
   }
 }
 
