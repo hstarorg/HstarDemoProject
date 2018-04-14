@@ -13,7 +13,8 @@
 export default {
   asyncData({ store, route }) {
     // 触发 action 后，会返回 Promise
-    return store.dispatch('doLogin', true);
+    console.log(store.dispatch('doLogin', true));
+    return true;
   }
 };
 </script>
