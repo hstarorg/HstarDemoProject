@@ -1,10 +1,10 @@
-const webpack = require('webpack')
-const webpackMerge = require('webpack-merge')
-const baseConf = require('./webpack.base.conf')
-const nodeExternals = require('webpack-node-externals')
-const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const base = require('./webpack.base.conf');
+const nodeExternals = require('webpack-node-externals');
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
 
-module.exports = webpackMerge(baseConf, {
+module.exports = merge(base, {
   target: 'node',
   devtool: '#source-map',
   entry: './src/entry-server.js',
@@ -14,6 +14,7 @@ module.exports = webpackMerge(baseConf, {
   },
   resolve: {
     alias: {
+      'create-api': './create-api-server.js'
     }
   },
   // https://webpack.js.org/configuration/externals/#externals
