@@ -1,14 +1,14 @@
-import Router from 'vue-router';
-import Vue from 'vue';
+import * as pages from "./pages";
+
+import Router from "vue-router";
+import Vue from "vue";
 
 Vue.use(Router);
-const routes = [
-
-];
+const routes = [{ path: "/", component: pages.Home }];
 
 export function createRouter() {
   return new Router({
-    mode: 'history',
+    mode: "history",
     routes
   });
-};
+}
