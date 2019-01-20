@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "classic",
+    "lib": ["esnext", "dom"]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "strictNullChecks": true,
+    "outDir": "dist"
+  },
+  "files": ["test.ts"]
+}
