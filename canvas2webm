@@ -1,0 +1,35 @@
+ (function() {
+      var requestAnimationFrame =
+        window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame;
+      window.requestAnimationFrame = requestAnimationFrame;
+    })();
+
+    // the actual demo code, yaaay
+    var last_time = +new Date();
+    var video = new Whammy.Video(90);
+    var progress = document.getElementById("progress");
+
+    function nextFrame() {
+      progress.value+=0.1;
+      var context = clock((last_time += 1000)); // return canvas  context
+      video.add(context);
+      if (progress.value / progress.max < 1) {
+        requestAnimationFrame(nextFrame);
+      } else {
+        requestAnimationFrame(finalizeVideo); // well, should probably use settimeout instead
+      }
+    }
+
+    function finalizeVideo() {
+      var start_time = +new Date();
+      var output = video.compile();
+      var end_time = +new Date();
+      var url = webkitURL.createObjectURL(output);
+      console.log("start");
+      convertWebm2MP4(output);
+    }
+    
+    nextFrame(); // startup
