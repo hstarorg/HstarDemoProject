@@ -13,6 +13,6 @@
     "gulp": "^3.9.1",
     "node-notifier": "^4.6.1",
     "run-sequence": "^1.2.2",
-    "shelljs": "^0.7.5"
+    "shelljs": "^0.8.5"
   }
 }
